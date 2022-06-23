@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useCallback} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {requests} from '../../../api/requests';
 import {
@@ -16,6 +16,8 @@ const ProductScreen = () => {
   let navigation = useNavigation();
 
   const dispatch = useDispatch();
+
+  const [quantity, setQuantity] = useState(1);
 
   let items = useRoute().params?.item;
 
@@ -57,6 +59,7 @@ const ProductScreen = () => {
             <Text style={styles.text}>Name: {items?.name}</Text>
             <Text style={styles.text}>Color: {items?.colour}</Text>
             <Text style={styles.text}>Price: {items?.price}</Text>
+            <Text>Quantity: {quantity}</Text>
             <View style={{alignItems: 'flex-end'}}>
               <TouchableOpacity
                 onPress={() => addItem(items)}
