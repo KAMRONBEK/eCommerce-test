@@ -1,9 +1,11 @@
 import {createStore, combineReducers} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import { basketReducer } from './reducers/basket';
 import { productReducer } from './reducers/products';
 
 const rootReducer = combineReducers({
   products: productReducer,
+  basket: basketReducer,
 });
 
 
