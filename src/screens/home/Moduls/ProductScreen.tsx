@@ -17,12 +17,14 @@ const ProductScreen = () => {
 
   const dispatch = useDispatch();
 
-  const [quantity, setQuantity] = useState(1);
-
   let items = useRoute().params?.item;
 
   const addItem = (item?: any) => {
     dispatch(addItems(item));
+  };
+
+  const back = () => {
+    navigation.goBack();
   };
 
   return (
@@ -40,7 +42,6 @@ const ProductScreen = () => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text style={{fontSize: 22}}>Back</Text>
           </TouchableOpacity>
-          <Text style={{fontSize: 22}}>Home Page</Text>
         </View>
 
         <View style={{paddingHorizontal: 20}}>
@@ -59,10 +60,10 @@ const ProductScreen = () => {
             <Text style={styles.text}>Name: {items?.name}</Text>
             <Text style={styles.text}>Color: {items?.colour}</Text>
             <Text style={styles.text}>Price: {items?.price}</Text>
-            <Text>Quantity: {quantity}</Text>
+            <Text>Quantity: 1</Text>
             <View style={{alignItems: 'flex-end'}}>
               <TouchableOpacity
-                onPress={() => addItem(items)}
+                onPress={() => (addItem(items), back())}
                 style={{
                   backgroundColor: colors.blackOpacity,
                   paddingVertical: 10,
