@@ -11,26 +11,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors} from '../../constants/colors';
 import {windowHeight, windowWidth} from '../../constants/size';
-import {clearAllItems, removeItem} from '../../store/actions/basket';
+import {
+  changeQuantity,
+  clearAllItems,
+  removeItem,
+} from '../../store/actions/basket';
 
 const BasketScreen = () => {
   const dispatch = useDispatch();
 
-  const [quantity, setQuantity] = useState(1);
+  const allBasketProducts = useSelector(state => state.basket.basketProducts);
 
-  let qtyPlus = () => {
-    if (quantity >= 0) {
-      setQuantity(quantity + 1);
-    } else null;
+  const setQuantity = (id, number) => {
+    dispatch(changeQuantity(id, number));
   };
-
-  let qtyMinus = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    } else null;
-  };
-
-  const allBasketProducts = useSelector(state => state.basket.basket_products);
 
   let removeProduct = (id?: any) => {
     dispatch(removeItem(id));
@@ -89,13 +83,17 @@ const BasketScreen = () => {
                   <Text style={styles.text}>Color: {item?.colour}</Text>
                   <Text style={styles.text}>Price: {item?.price}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <TouchableOpacity style={styles.btn} onPress={qtyMinus}>
+                    <TouchableOpacity
+                      style={styles.btn}
+                      onPress={() => setQuantity(item.id, -1)}>
                       <Text>-</Text>
                     </TouchableOpacity>
                     <Text style={{paddingHorizontal: 10}}>
-                      Quantity: 1
+                      Quantity: {item.quantity}
                     </Text>
-                    <TouchableOpacity style={styles.btn} onPress={qtyPlus}>
+                    <TouchableOpacity
+                      style={styles.btn}
+                      onPress={() => setQuantity(item.id, 1)}>
                       <Text>+</Text>
                     </TouchableOpacity>
                   </View>
