@@ -30,20 +30,6 @@ const ProductScreen = () => {
   return (
     <View style={{flex: 1}}>
       <SafeAreaView>
-        <View
-          style={{
-            height: 80,
-            paddingHorizontal: 20,
-            backgroundColor: colors.lightGray,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={{fontSize: 22}}>Back</Text>
-          </TouchableOpacity>
-        </View>
-
         <View style={{paddingHorizontal: 20}}>
           <View
             style={{

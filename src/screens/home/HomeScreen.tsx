@@ -15,6 +15,7 @@ import {products} from '../../store/actions/products';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {windowHeight, windowWidth} from '../../constants/size';
 import {Routes} from '../../routes/Router';
+import Header from './constants/HomeHeader';
 
 const HomeScreen = () => {
   let navigation = useNavigation();
@@ -56,15 +57,7 @@ const HomeScreen = () => {
   return (
     <View style={{flex: 1}}>
       <SafeAreaView>
-        <View
-          style={{
-            height: 80,
-            paddingHorizontal: 20,
-            backgroundColor: colors.lightGray,
-            justifyContent: 'center',
-          }}>
-          <Text style={{fontSize: 22}}>Home Page</Text>
-        </View>
+        <Header />
         <FlatList
           showsVerticalScrollIndicator={false}
           data={allProducts}
