@@ -40,8 +40,6 @@ export const basketReducer = (state = basketState, action?: any) => {
     case CHANGE_QUANTITY:
       let newProducts = state.basketProducts.map(item => {
         if (item.id == action.payload.id) {
-          console.log(item.quantity + action.payload.number);
-
           item.quantity = Math.max(item.quantity + action.payload.number, 0);
         }
         return item;
