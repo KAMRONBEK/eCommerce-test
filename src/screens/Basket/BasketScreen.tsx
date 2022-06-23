@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors} from '../../constants/colors';
@@ -16,13 +16,14 @@ import {
   clearAllItems,
   removeItem,
 } from '../../store/actions/basket';
+import BasketHeader from './constants/BasketHeader';
 
 const BasketScreen = () => {
   const dispatch = useDispatch();
 
   const allBasketProducts = useSelector(state => state.basket.basketProducts);
 
-  const setQuantity = (id, number) => {
+  const setQuantity = (id: number, number: number) => {
     dispatch(changeQuantity(id, number));
   };
 
@@ -33,28 +34,7 @@ const BasketScreen = () => {
   return (
     <View style={{flex: 1}}>
       <SafeAreaView>
-        <View
-          style={{
-            height: 80,
-            paddingHorizontal: 20,
-            backgroundColor: colors.lightGray,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <Text style={{fontSize: 22}}>Basket Page</Text>
-          <View style={{alignItems: 'flex-end'}}>
-            <TouchableOpacity
-              onPress={() => dispatch(clearAllItems())}
-              style={{
-                backgroundColor: colors.white,
-                paddingVertical: 10,
-                paddingHorizontal: 20,
-              }}>
-              <Text>Clear Basket</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <BasketHeader />
         <FlatList
           showsVerticalScrollIndicator={false}
           data={allBasketProducts}
